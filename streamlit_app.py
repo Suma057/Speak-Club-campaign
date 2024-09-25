@@ -50,13 +50,17 @@ with input_container:
 # Function to generate response using OpenAI GPT model
 def generate_response(prompt):
     try:
-        response = openai.Completion.create(
-            model="gpt-4",  # Use "gpt-4" or "gpt-3.5-turbo" based on your requirement
-            prompt=prompt,
-            max_tokens=150,  # Limit the response length
+        # Update this part to use `ChatCompletion`
+        response = openai.ChatCompletion.create(
+            model="gpt-4",  # You can use "gpt-4" or "gpt-3.5-turbo" based on your need
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=150,  # Control the response length
             temperature=0.7  # Adjust creativity level
         )
-        return response.choices[0].text.strip()
+        return response['choices'][0]['message']['content'].strip()
     except Exception as e:
         return f"Error: {str(e)}"
 
