@@ -8,8 +8,8 @@ import openai
 st.set_page_config(page_title="SpeakClub - Campaign content generation - An LLM-powered Streamlit app")
 
 # Set your OpenAI API key (make sure to keep it secure and not expose it in the code directly)
-openai.api_key = "your_openai_api_key"
-
+OPENAI_API_KEY = "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"
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Sidebar content
 with st.sidebar:
     st.title('InviGen App')
