@@ -10,6 +10,12 @@ st.set_page_config(page_title="SpeakClub - Campaign content generation - An LLM-
 # Set your OpenAI API key (make sure to keep it secure and not expose it in the code directly)
 OPENAI_API_KEY = "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"
 openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+if "OPENAI_API_KEY" not in st.secrets:
+    st.error("API Key is missing! Please configure the OpenAI API key in Streamlit Secrets.")
+else:
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 # Sidebar content
 with st.sidebar:
     st.title('InviGen App')
